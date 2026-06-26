@@ -89,34 +89,6 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.crearProducto(dto));
     }
 
-    @GetMapping
-    @Operation(summary = "Obtiene un producto regisstrado", description = "Obtiene un producto regisstrado.")
-    @ApiResponse(responseCode = "200", description = "Operación exitosa")
-    public ResponseEntity<Page<ProductoDTO>> obtenerActivos(
-            @Parameter(description = "Configuración de la paginación (page, size, sort)")
-            @PageableDefault(size = 4) Pageable pageable) {
-
-        log.info("## Búsqueda de productos activvos para ecommerce.");
-        Page<ProductoDTO> listaProductos = service.obtenerProductosActivos(pageable);
-
-        return ResponseEntity.ok(/*service.obtenerProductosActivos(pageable)*/ listaProductos);
-    }
-
-    @GetMapping("/{id}")
-    @Operation(summary = "Buscar producto por ID", description = "Devuelve los detalles de un único producto basado en su identificador numérico.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Producto encontrado"),
-            @ApiResponse(responseCode = "406", description = "Producto no encontrado")
-    })
-    public ResponseEntity<ProductoDTO> obtenerPorId(
-            @Parameter(description = "ID del producto a buscar", example = "1")
-            @PathVariable long id) {
-
-        log.info("## Búsqueda de producto por identificador para ecommerce.");
-
-        return ResponseEntity.status(HttpStatus.OK).body(service.obtenerProductoPorId(id));
-    }
-
     @PutMapping("/{id}")
     @Operation(summary = "Actualizar un producto existente", description = "Modifica los datos de un producto existente utilizando su ID.")
     @ApiResponses(value = {
@@ -150,32 +122,60 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/categoria/{categoria}")
-    @Operation(summary = "Buscar productos por categoría", description = "Retorna una lista paginada de productos que pertenecen a una categoría específica.")
-    @ApiResponse(responseCode = "200", description = "Operación exitosa")
-    public ResponseEntity<Page<ProductoDTO>> obtenerPorCategoria(
-            @Parameter(description = "Nombre de la categoría", example = "electronica") @PathVariable String categoria,
-            @Parameter(description = "Configuración de la paginación") @PageableDefault(size = 3) Pageable pageable) {
-
-        log.info("## Búsqueda de un producto por categoría para ecommerce.");
-
-        return ResponseEntity.ok(service.obtenerPorCategoria(categoria, pageable));
-    }
-
-    @GetMapping("/buscar")
-    @Operation(summary = "Buscar productos por rango de precios", description = "Filtra de manera paginada los productos cuyo precio se encuentre entre el mínimo y máximo indicados.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Operación exitosa")
-    })
-    public ResponseEntity<Page<ProductoDTO>> obtenerPorPrecios(
-            @Parameter(description = "Precio mínimo del filtro", example = "10.50") @RequestParam BigDecimal precioMin,
-            @Parameter(description = "Precio máximo del filtro", example = "99.99") @RequestParam BigDecimal precioMax,
-            @Parameter(description = "Configuración de la paginación") @PageableDefault(size = 2) Pageable pageable) {
-
-        log.info("## Búsqueda de un producto entre rango de precios para ecommerce.");
-
-        return ResponseEntity.ok( service.obtenerRangoPrecioMinMax(precioMin, precioMax, pageable));
-    }
+//    @GetMapping
+//    @Operation(summary = "Obtiene un producto regisstrado", description = "Obtiene un producto regisstrado.")
+//    @ApiResponse(responseCode = "200", description = "Operación exitosa")
+//    public ResponseEntity<Page<ProductoDTO>> obtenerActivos(
+//            @Parameter(description = "Configuración de la paginación (page, size, sort)")
+//            @PageableDefault(size = 4) Pageable pageable) {
+//
+//        log.info("## Búsqueda de productos activvos para ecommerce.");
+//        Page<ProductoDTO> listaProductos = service.obtenerProductosActivos(pageable);
+//
+//        return ResponseEntity.ok(/*service.obtenerProductosActivos(pageable)*/ listaProductos);
+//    }
+//
+//    @GetMapping("/{id}")
+//    @Operation(summary = "Buscar producto por ID", description = "Devuelve los detalles de un único producto basado en su identificador numérico.")
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "200", description = "Producto encontrado"),
+//            @ApiResponse(responseCode = "406", description = "Producto no encontrado")
+//    })
+//    public ResponseEntity<ProductoDTO> obtenerPorId(
+//            @Parameter(description = "ID del producto a buscar", example = "1")
+//            @PathVariable long id) {
+//
+//        log.info("## Búsqueda de producto por identificador para ecommerce.");
+//
+//        return ResponseEntity.status(HttpStatus.OK).body(service.obtenerProductoPorId(id));
+//    }
+//
+//    @GetMapping("/categoria/{categoria}")
+//    @Operation(summary = "Buscar productos por categoría", description = "Retorna una lista paginada de productos que pertenecen a una categoría específica.")
+//    @ApiResponse(responseCode = "200", description = "Operación exitosa")
+//    public ResponseEntity<Page<ProductoDTO>> obtenerPorCategoria(
+//            @Parameter(description = "Nombre de la categoría", example = "electronica") @PathVariable String categoria,
+//            @Parameter(description = "Configuración de la paginación") @PageableDefault(size = 3) Pageable pageable) {
+//
+//        log.info("## Búsqueda de un producto por categoría para ecommerce.");
+//
+//        return ResponseEntity.ok(service.obtenerPorCategoria(categoria, pageable));
+//    }
+//
+//    @GetMapping("/buscar")
+//    @Operation(summary = "Buscar productos por rango de precios", description = "Filtra de manera paginada los productos cuyo precio se encuentre entre el mínimo y máximo indicados.")
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "200", description = "Operación exitosa")
+//    })
+//    public ResponseEntity<Page<ProductoDTO>> obtenerPorPrecios(
+//            @Parameter(description = "Precio mínimo del filtro", example = "10.50") @RequestParam BigDecimal precioMin,
+//            @Parameter(description = "Precio máximo del filtro", example = "99.99") @RequestParam BigDecimal precioMax,
+//            @Parameter(description = "Configuración de la paginación") @PageableDefault(size = 2) Pageable pageable) {
+//
+//        log.info("## Búsqueda de un producto entre rango de precios para ecommerce.");
+//
+//        return ResponseEntity.ok( service.obtenerRangoPrecioMinMax(precioMin, precioMax, pageable));
+//    }
 
 //    @GetMapping("/busqueda/global/{nombreOrDescripcion}")
 //    public ResponseEntity<Page<ProductoDTO>> obtenerPorNoombreOrDescripcion(
