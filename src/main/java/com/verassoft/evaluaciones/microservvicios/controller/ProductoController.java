@@ -134,21 +134,21 @@ public class ProductoController {
 
         return ResponseEntity.ok(/*service.obtenerProductosActivos(pageable)*/ listaProductos);
     }
-//
-//    @GetMapping("/{id}")
-//    @Operation(summary = "Buscar producto por ID", description = "Devuelve los detalles de un único producto basado en su identificador numérico.")
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", description = "Producto encontrado"),
-//            @ApiResponse(responseCode = "406", description = "Producto no encontrado")
-//    })
-//    public ResponseEntity<ProductoDTO> obtenerPorId(
-//            @Parameter(description = "ID del producto a buscar", example = "1")
-//            @PathVariable long id) {
-//
-//        log.info("## Búsqueda de producto por identificador para ecommerce.");
-//
-//        return ResponseEntity.status(HttpStatus.OK).body(service.obtenerProductoPorId(id));
-//    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar producto por ID", description = "Devuelve los detalles de un único producto basado en su identificador numérico.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Producto encontrado"),
+            @ApiResponse(responseCode = "406", description = "Producto no encontrado")
+    })
+    public ResponseEntity<ProductoDTO> obtenerPorId(
+            @Parameter(description = "ID del producto a buscar", example = "1")
+            @PathVariable long id) {
+
+        log.info("## Búsqueda de producto por identificador para ecommerce.");
+
+        return ResponseEntity.status(HttpStatus.OK).body(service.obtenerProductoPorId(id));
+    }
 //
 //    @GetMapping("/categoria/{categoria}")
 //    @Operation(summary = "Buscar productos por categoría", description = "Retorna una lista paginada de productos que pertenecen a una categoría específica.")
