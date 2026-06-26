@@ -1,4 +1,4 @@
-FROM openjdk:25-ea-21-jdk-slim
+FROM alpine/java:21-jdk
 WORKDIR /app
 COPY ./target/wsecommerce-1.0.0.jar /app
 EXPOSE 8080
