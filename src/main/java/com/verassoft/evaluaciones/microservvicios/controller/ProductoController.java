@@ -177,15 +177,15 @@ public class ProductoController {
         return ResponseEntity.ok( service.obtenerRangoPrecioMinMax(precioMin, precioMax, pageable));
     }
 
-    @GetMapping("/busqueda/global/{nombreOrDescripcion}")
-    public ResponseEntity<Page<ProductoDTO>> obtenerPorNoombreOrDescripcion(
-            @PathVariable String nombreOrDescripcion,
-            @PageableDefault(size = 2) Pageable pageable
-    ) {
-
-        return ResponseEntity.ok(
-                service.obtenerPorNombreOrDescripcion(nombreOrDescripcion, pageable)
-        );
-    }
+//    @GetMapping("/busqueda/global/{nombreOrDescripcion}")
+//    public ResponseEntity<Page<ProductoDTO>> obtenerPorNoombreOrDescripcion(
+//            @PathVariable String nombreOrDescripcion,
+//            @PageableDefault(size = 2) Pageable pageable
+//    ) {
+//
+//        return ResponseEntity.ok(
+//                service.obtenerPorNombreOrDescripcion(nombreOrDescripcion, pageable)
+//        );
+//    }
 
 }
