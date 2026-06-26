@@ -1,8 +1,13 @@
 version: 0.2
 
 phases:
+  install:
+    runtime-versions:
+      java: corretto21
   pre_build:
     commands:
+      - echo "Iniciando build con Java 21..."
+      - java -version
       - mvn clean install
       - echo Logging in to Amazon ECR...
       - aws --version
