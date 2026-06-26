@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: wsecommerce
+  profiles:
+    active: dev # dev qa ... prod
+  config:
+    import: "configserver:http://3.82.24.167:8888"
+    #import: "configserver:http://localhost:8888"
+  # Asegurar que Spring preste atención a los recursos estáticos internos
+  web:
+    resources:
+      add-mappings: true
+
+#server:
+#  port: 8080
+## Swagger UI
+#springdoc:
+#  swagger-ui:
+#    path: /swagger-ui.html
+#    operationsSorter: method
+#    tagsSorter: alpha
+#    tryItOutEnabled: true
+#  api-docs:
+#    path: /v3/api-docs
+#
+## Ambiente de Dev
+#spring:
+#  application:
+#    name: wsecommerce
+#  datasource:
+#    url: jdbc:h2:mem:ecommercedb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+#    driverClassName: org.h2.Driver
+#    username: sa
+#    password:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    # Habilita o deshabilita los logs para las trazas de hibernate: Hibernate: XEXEXEXE...
+#    show-sql: false
+#  h2:
+#    console:
+  #      enabled: false
+#      path: /h2-console
+#  # Deshabilita la configuracion de config-server
+#  cloud:
+#    config:
+#      enabled: false
+## habilitar si se requiere mostrar la consulta SQL pero en formato de Log
+#logging:
+#  level:
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.orm.results.mapping: TRACE
