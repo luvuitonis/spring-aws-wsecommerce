@@ -122,18 +122,18 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-//    @GetMapping
-//    @Operation(summary = "Obtiene un producto regisstrado", description = "Obtiene un producto regisstrado.")
-//    @ApiResponse(responseCode = "200", description = "Operación exitosa")
-//    public ResponseEntity<Page<ProductoDTO>> obtenerActivos(
-//            @Parameter(description = "Configuración de la paginación (page, size, sort)")
-//            @PageableDefault(size = 4) Pageable pageable) {
-//
-//        log.info("## Búsqueda de productos activvos para ecommerce.");
-//        Page<ProductoDTO> listaProductos = service.obtenerProductosActivos(pageable);
-//
-//        return ResponseEntity.ok(/*service.obtenerProductosActivos(pageable)*/ listaProductos);
-//    }
+    @GetMapping
+    @Operation(summary = "Obtiene un producto regisstrado", description = "Obtiene un producto regisstrado.")
+    @ApiResponse(responseCode = "200", description = "Operación exitosa")
+    public ResponseEntity<Page<ProductoDTO>> obtenerActivos(
+            @Parameter(description = "Configuración de la paginación (page, size, sort)")
+            @PageableDefault(size = 4) Pageable pageable) {
+
+        log.info("## Búsqueda de productos activvos para ecommerce.");
+        Page<ProductoDTO> listaProductos = service.obtenerProductosActivos(pageable);
+
+        return ResponseEntity.ok(/*service.obtenerProductosActivos(pageable)*/ listaProductos);
+    }
 //
 //    @GetMapping("/{id}")
 //    @Operation(summary = "Buscar producto por ID", description = "Devuelve los detalles de un único producto basado en su identificador numérico.")
