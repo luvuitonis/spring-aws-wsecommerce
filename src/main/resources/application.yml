@@ -4,7 +4,7 @@ spring:
   profiles:
     active: dev # dev qa ... prod
   config:
-    import: "configserver:http://3.80.118.11:8888"
+    import: "configserver:http://18.234.111.221:8888"
   # Asegurar que Spring preste atención a los recursos estáticos internos
   web:
     resources:
